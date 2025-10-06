@@ -1,10 +1,11 @@
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 
 public class FirstJUnitTest {
@@ -19,7 +20,6 @@ public class FirstJUnitTest {
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
-        sleep(20000);
         $("#firstName").setValue("Maxim");
         $("#lastName").setValue("Barkalov");
         $("#userEmail").setValue("asjldh@als.ru");
@@ -41,11 +41,15 @@ public class FirstJUnitTest {
         $("#uploadPicture").uploadFromClasspath("testFile.png");
         $("#submit").click();
 
-    }
-
-    @AfterAll
-    static void afterAll() {
-        sleep(10000);
-
+        $(".table-responsive").shouldHave(text("Maxim Barkalov"));
+        $(".table-responsive").shouldHave(text("asjldh@als.ru"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("1231231231"));
+        $(".table-responsive").shouldHave(text("21 July,1997"));
+        $(".table-responsive").shouldHave(text("Maths"));
+        $(".table-responsive").shouldHave(text("Reading"));
+        $(".table-responsive").shouldHave(text("testFile.png"));
+        $(".table-responsive").shouldHave(text("asdasdasd1"));
+        $(".table-responsive").shouldHave(text("Rajasthan Jaiselmer"));
     }
 }
