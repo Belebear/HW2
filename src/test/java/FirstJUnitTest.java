@@ -14,7 +14,7 @@ public class FirstJUnitTest {
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserCapabilities.setCapability("pageLoadStrategy", "eager");
+        Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
@@ -23,20 +23,18 @@ public class FirstJUnitTest {
         $("#firstName").setValue("Maxim");
         $("#lastName").setValue("Barkalov");
         $("#userEmail").setValue("asjldh@als.ru");
-        $("[for='gender-radio-1']").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("1231231231");
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $("[value='6']").click();
-        $(".react-datepicker__year-select").click();
-        $("[value='1997']").click();
+        $(".react-datepicker__month-select").selectOption("July");
+        $(".react-datepicker__year-select").selectOption("1997");
         $(".react-datepicker__day--021").click();
         $("#subjectsInput").setValue("Ma").pressEnter();
-        $("[for='hobbies-checkbox-2']").click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#currentAddress").setValue("asdasdasd1");
-        $(byText("Select State")).click();
+        $("#stateCity-wrapper").$(byText("Select State")).click();
         $("#react-select-3-option-3").click();
-        $(byText("Select City")).click();
+        $("#stateCity-wrapper").$(byText("Select City")).click();
         $("#react-select-4-option-1").click();
         $("#uploadPicture").uploadFromClasspath("testFile.png");
         $("#submit").click();
@@ -53,3 +51,4 @@ public class FirstJUnitTest {
         $(".table-responsive").shouldHave(text("Rajasthan Jaiselmer"));
     }
 }
+
